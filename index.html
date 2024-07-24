@@ -263,6 +263,16 @@
     font-size: 20px;
     line-height: 20px;
 }
+
+.content {
+            max-width: 1000px;
+            width: 100%;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
       
     </style>
   </head>
@@ -302,6 +312,58 @@
       </center>
     </footer>
 
+ <div class="content" id="markdown-content">
+        <!-- Markdown content goes here -->
+        <textarea id="markdown" style="display: none;">
+# Welcome to SDWZ Shortlink (Free)
+
+### API
+
+#### 短链生成
+
+```bash
+# POST /create
+
+curl -X POST -H "Content-Type: application/json" -d '{"url":"https://131213.xyz"}' https://d.131213.xyz/create
+
+# 指定slug
+
+curl -X POST -H "Content-Type: application/json" -d '{"url":"https://131213.xyz","slug":"scxs"}' https://d.131213.xyz/create
+
+```
+
+
+
+> response:
+
+```json
+{
+  "slug": "<slug>",
+  "link": "http://d.131213.xyz/<slug>"
+}
+```
+
+        </textarea>
+    </div>
+
+    <!-- Load showdown.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Create a new Showdown converter
+            var converter = new showdown.Converter();
+
+            // Get the markdown content from the textarea
+            var markdownContent = document.getElementById('markdown').value;
+
+            // Convert markdown content to HTML
+            var htmlContent = converter.makeHtml(markdownContent);
+
+            // Set the HTML content to the div
+            document.getElementById('markdown-content').innerHTML = htmlContent;
+        });
+    </script>
+	 
     <script>
     function showNotificationBar() {
         var bar = document.getElementById("notification-bar");
