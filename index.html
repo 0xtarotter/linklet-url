@@ -263,17 +263,6 @@
     font-size: 20px;
     line-height: 20px;
 }
-
-.content {
-            max-width: 1000px;
-            width: 100%;
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
-      
     </style>
   </head>
   <body>
@@ -311,55 +300,6 @@
         <a style="font-size:10px;color:#dedede;">owner</a>
       </center>
     </footer>
-
- <div class="content" id="markdown-content">
-        <!-- Markdown content goes here -->
-        <textarea id="markdown" style="display: none;">
-### API
-***
-- 短链生成:
-
-```bash
-- POST /create
-
-curl -X POST -H "Content-Type: application/json" -d '{"url":"https://test.sdwz.us.kg"}' https://sdwz.us.kg/create
-
-- 指定slug
-
-curl -X POST -H "Content-Type: application/json" -d '{"url":"https://test.sdwz.us.kg","slug":"scxs"}' https://sdwz.us.kg/create
-
-```
-
-- response:
-		
-```json
-
-{
-  "slug": "<slug>",
-  "link": "http://sdwz.us.kg/<slug>"
-}
-```
-
-</textarea>
-    </div>
-
-    <!-- Load showdown.js from CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Create a new Showdown converter
-            var converter = new showdown.Converter();
-
-            // Get the markdown content from the textarea
-            var markdownContent = document.getElementById('markdown').value;
-
-            // Convert markdown content to HTML
-            var htmlContent = converter.makeHtml(markdownContent);
-
-            // Set the HTML content to the div
-            document.getElementById('markdown-content').innerHTML = htmlContent;
-        });
-    </script>
 	 
     <script>
     function showNotificationBar() {
