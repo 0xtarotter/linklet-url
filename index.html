@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <link rel="icon" href="asset/img/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SDWZ - 缩短网址生成器</title>
     <style>
+      /* Existing CSS styles */
       :root {
         --color-primary: #5c7cfa;
         --color-primary-dark: #4263eb;
         --color-primary-alpha: #5c7cfa50;
-
         --body-color: #495057;
         --body-bg: #f8f9fa;
-
         --border-color: #dee2e6;
       }
 
@@ -205,6 +204,10 @@
         width: 100%;
         background-color: var(--color-primary);
         padding: 1rem 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
       }
 
       nav ul {
@@ -229,152 +232,83 @@
         text-decoration: underline;
       }
 
-      
-#notification-bar {
-    width: 100%;
-    background-color: yellow;
-    color: #000;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    font-size: 14px;  /* 字体大小调整为14px */
-    display: flex;
-    justify-content: center;  /* 居中对齐 */
-    align-items: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 1s;
-}
+      #notification-bar {
+        width: 100%;
+        background-color: yellow;
+        color: #000;
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        font-size: 14px;  /* 字体大小调整为14px */
+        display: flex;
+        justify-content: center;  /* 居中对齐 */
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 1s;
+      }
 
-#notification-bar.show {
-    visibility: visible;
-    opacity: 1;
-}
+      #notification-bar.show {
+        visibility: visible;
+        opacity: 1;
+      }
 
-#notification-bar .close-btn {
-    position: absolute;
-    right: 40px;
-	color: red;
-    cursor: pointer;
-    font-size: 20px;
-    line-height: 20px;
-}
+      #notification-bar .close-btn {
+        position: absolute;
+        right: 40px;
+        color: red;
+        cursor: pointer;
+        font-size: 20px;
+        line-height: 20px;
+      }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <nav>
-      <ul>
-        <li><a href="https://sdwz.us.kg">SDWZ Shortlink</a></li>
-        <li><a href="https://cesu.wang">Speedtest</a></li>
-        <li><a href="https://ip.icu">IP Query</a></li>
-        <li><a href="https://jpg.cat">Image Compression</a></li>
-      </ul>
+        <ul>
+            <li><a href="https://sdwz.us.kg">SDWZ Shortlink</a></li>
+            <li><a href="https://cesu.wang">Speedtest</a></li>
+            <li><a href="https://ip.icu">IP Query</a></li>
+            <li><a href="https://jpg.cat">Image Compression</a></li>
+        </ul>
     </nav>
-    
+
     <header><h1>SDWZ Shortlink<sup> (Free)</sup></h1></header>
 
-<div id="notification-bar">
-    <span>如果你发现域名被墙或你想使用自己的域名，请直接CNAME本域名。🗝️<a href="/">本站支持API调用</a>！</span>
-    <span class="close-btn" onclick="closeNotificationBar()">&times;</span>
-</div>
-    
+    <div id="notification-bar">
+        <span>如果你发现域名被墙或你想使用自己的域名，请直接CNAME本域名。🗝️<a href="/">本站支持API调用</a>！</span>
+        <span class="close-btn" onclick="closeNotificationBar()">&times;</span>
+    </div>
+
     <main x-data="app" x-cloak>
-      <p x-show.transition.opacity="alert" :class="alert?.type" x-text="alert?.message"></p>
-      <input placeholder="输入要缩短的网址..." x-model="url" x-ref="url" />
-      <details>
-        <summary>自定义设置</summary>
-        <div>
-          <input placeholder="slug" x-model="slug" />
-          <small>不设置则随机生成 slug</small>
-        </div>
-      </details>
-      <button :class="{ loading }" :disabled="loading || isValidated()" @click="submit($refs, $nextTick)">生成</button>
+        <p x-show.transition.opacity="alert" :class="alert?.type" x-text="alert?.message"></p>
+        <input placeholder="输入要缩短的网址..." x-model="url" x-ref="url" />
+        <details>
+            <summary>自定义设置</summary>
+            <div>
+                <input placeholder="slug" x-model="slug" />
+                <small>不设置则随机生成 slug</small>
+            </div>
+        </details>
+        <button :class="{ loading }" :disabled="loading || isValidated()" @click="submit($refs, $nextTick)">生成</button>
     </main>
+
     <footer>
-      <center>
-        <a href="https://39mi.com" target="_blank" style="text-decoration:none;"> <img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDUiIGhlaWdodD0iNDUiPjxwYXRoIGQ9Ik01MTEuMTI1IDYzLjU2MmMyNDcuMDA3IDAgNDQ3LjI0OCAyMDAuMjQxIDQ0Ny4yNDggNDQ3LjI1IDAgMjQ3LjAxLTIwMC4yNDEgNDQ3LjI1LTQ0Ny4yNDggNDQ3LjI1LTI0Ny4wMSAwLTQ0Ny4yNTEtMjAwLjI0LTQ0Ny4yNTEtNDQ3LjI1IDAtMjQ3LjAwOSAyMDAuMjQtNDQ3LjI1IDQ0Ny4yNTEtNDQ3LjI1eiIgZmlsbD0iI0VFRSIvPjxwYXRoIGQ9Ik03MTEuNjc3IDkwNy44NzJjLTU5LjIxMyAyOC45MzYtMTI1LjczNyA0NS4yMi0xOTYuMDgxIDQ1LjIyLTg2LjcyNyAwLTE2Ny42MzUtMjQuNzYtMjM2LjE4OC02Ny40OSA3OS4yMzctMjAuNDY3IDE1NS44MjUtMTIuMjE0IDE3My4yMzQtNDguMTY2IDQwLjgxNi04MC4zMzcgMjAuNDE4LTExMC44Mi0zNi45NzQtMTIxLjE2OC03OC4wMy0yMC45NTItOTguOTcyLTU0LjgyOC04OS4xODQtMjUxLjk3OCAxOS4zMjUtMTA0LjQ0NCA0LjEtMzAzLjQxNCAyNDUuMDM2LTI2Ny40MDMgMjQ1Ljc0NyAzNi43NDYgMTcyLjIwNiAyNDYuODEgNjkuMjcyIDUwMC41NzQtNTIuODIyIDEzMC4yMzEgMjYuMDAzIDE4OC43MDYgNzAuODg1IDIxMC40MTF6IiBmaWxsPSIjRkZGIi8+PC9zdmc+" /> <br /> <img src="https://park.39mi.com/img/domainking.svg" height="auto" width="150" /> <br /> </a>
-        <a style="font-size:10px;color:#dedede;">owner</a>
-      </center>
+        <center>
+            <a href="https://39mi.com" target="_blank" style="text-decoration:none;">
+                <span style="font-size: small;"> Hosted By : 39MI.COM (米域名管理局)</span>
+            </a>
+        </center>
     </footer>
-	 
+
     <script>
-    function showNotificationBar() {
-        var bar = document.getElementById("notification-bar");
-        bar.className = "show";
-        setTimeout(function() {
-            closeNotificationBar();
-        }, 15000);
-    }
-
-    function closeNotificationBar() {
-        var bar = document.getElementById("notification-bar");
-        bar.className = bar.className.replace("show", "");
-    }
-
-    // 调用showNotificationBar函数来显示提示条
-    window.onload = function() {
-        showNotificationBar();
-    }
-</script>
-    
-    
-    <script src="asset/js/alpine.js"></script>
-    <script>
-      const app = {
-        url: '',
-        slug: '',
-        alert: null,
-        loading: false,
-        isValidated () {
-          return !/^https?:\/\/.{3,}/.test(this.url)
-        },
-        submit ($refs, $nextTick) {
-          if (!this.url) {
-            this.alert = { type: 'error', message: '缺少必需的参数：url。' }
-            return
-          }
-
-          if (this.isValidated()) {
-            this.alert = { type: 'error', message: '非法格式：url。' }
-            return
-          }
-
-          this.alert = null
-          this.loading = true
-
-          const body = { url: this.url }
-          if (this.slug) body.slug = this.slug
-
-          fetch('/create', {
-            method: 'post',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(body)
-          })
-            .then(res => res.json())
-            .then(res => {
-              this.loading = false
-              if (res.message) {
-                this.alert = { type: 'error', message: res.message }
-                return
-              }
-
-              this.url = res.link
-
-              $nextTick(() => {
-                $refs.url.select()
-                this.alert = { type: 'success', message: `链接 ${document.execCommand('Copy') ? '复制' : '生成'} ` }
-              })
-            })
-            .catch(e => {
-              this.alert = { type: 'error', message: e.message }
-              this.loading = false
-            })
+        function closeNotificationBar() {
+            document.getElementById('notification-bar').style.display = 'none';
         }
-      }
     </script>
-  </body>
+</body>
 </html>
