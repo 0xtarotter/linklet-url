@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="asset/img/favicon.png"  >
+    <link rel="icon" href="asset/img/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SDWZ - 缩短网址生成器</title>
     <style>
@@ -128,7 +128,7 @@
         line-height: inherit;
         cursor: pointer;
         user-select: none;
-        transition: border .3s, background .3s,;
+        transition: border .3s, background .3s;
       }
 
       button:hover {
@@ -200,9 +200,45 @@
           transform: rotate(360deg);
         }
       }
+
+      nav {
+        width: 100%;
+        background-color: var(--color-primary);
+        padding: 1rem 0;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav ul li {
+        margin: 0 1rem;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      nav ul li a:hover {
+        text-decoration: underline;
+      }
     </style>
   </head>
   <body>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
     <header><h1>SDWZ Shortlink<sup> (Free)</sup></h1></header>
     <main x-data="app" x-cloak>
       <p x-show.transition.opacity="alert" :class="alert?.type" x-text="alert?.message"></p>
@@ -218,10 +254,9 @@
     </main>
     <footer>
       <center>
-     <a href="https://39mi.com" target="_blank" style="text-decoration:none;"> <img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDUiIGhlaWdodD0iNDUiPjxwYXRoIGQ9Ik01MTEuMTI1IDYzLjU2MmMyNDcuMDA3IDAgNDQ3LjI0OCAyMDAuMjQxIDQ0Ny4yNDggNDQ3LjI1IDAgMjQ3LjAxLTIwMC4yNDEgNDQ3LjI1LTQ0Ny4yNDggNDQ3LjI1LTI0Ny4wMSAwLTQ0Ny4yNTEtMjAwLjI0LTQ0Ny4yNTEtNDQ3LjI1IDAtMjQ3LjAwOSAyMDAuMjQtNDQ3LjI1IDQ0Ny4yNTEtNDQ3LjI1eiIgZmlsbD0iI0VFRSIvPjxwYXRoIGQ9Ik03MTEuNjc3IDkwNy44NzJjLTU5LjIxMyAyOC45MzYtMTI1LjczNyA0NS4yMi0xOTYuMDgxIDQ1LjIyLTg2LjcyNyAwLTE2Ny42MzUtMjQuNzYtMjM2LjE4OC02Ny40OSA3OS4yMzctMjAuNDY3IDE1NS44MjUtMTIuMjE0IDE3My4yMzQtNDguMTY2IDQwLjgxNi04MC4zMzcgMjAuNDE4LTExMC44Mi0zNi45NzQtMTIxLjE2OC03OC4wMy0yMC45NTItOTguOTcyLTU0LjgyOC04OS4xODQtMjUxLjk3OCAxOS4zMjUtMTA0LjQ0NCA0LjEtMzAzLjQxNCAyNDUuMDM2LTI2Ny40MDMgMjQ1Ljc0NyAzNi43NDYgMTcyLjIwNiAyNDYuODEgNjkuMjcyIDUwMC41NzQtNTIuODIyIDEzMC4yMzEgMjYuMDAzIDE4OC43MDYgNzAuODg1IDIxMC40MTF6IiBmaWxsPSIjRkZGIi8+PC9zdmc+" /> <br /> <img src="https://park.39mi.com/img/domainking.svg" height="auto" width="150" /> <br /> </a>
-     <a style="font-size:10px;color:#dedede;">owner</a> 
-    </center> 
-      
+        <a href="https://39mi.com" target="_blank" style="text-decoration:none;"> <img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDUiIGhlaWdodD0iNDUiPjxwYXRoIGQ9Ik01MTEuMTI1IDYzLjU2MmMyNDcuMDA3IDAgNDQ3LjI0OCAyMDAuMjQxIDQ0Ny4yNDggNDQ3LjI1IDAgMjQ3LjAxLTIwMC4yNDEgNDQ3LjI1LTQ0Ny4yNDggNDQ3LjI1LTI0Ny4wMSAwLTQ0Ny4yNTEtMjAwLjI0LTQ0Ny4yNTEtNDQ3LjI1IDAtMjQ3LjAwOSAyMDAuMjQtNDQ3LjI1IDQ0Ny4yNTEtNDQ3LjI1eiIgZmlsbD0iI0VFRSIvPjxwYXRoIGQ9Ik03MTEuNjc3IDkwNy44NzJjLTU5LjIxMyAyOC45MzYtMTI1LjczNyA0NS4yMi0xOTYuMDgxIDQ1LjIyLTg2LjcyNyAwLTE2Ny42MzUtMjQuNzYtMjM2LjE4OC02Ny40OSA3OS4yMzctMjAuNDY3IDE1NS44MjUtMTIuMjE0IDE3My4yMzQtNDguMTY2IDQwLjgxNi04MC4zMzcgMjAuNDE4LTExMC44Mi0zNi45NzQtMTIxLjE2OC03OC4wMy0yMC45NTItOTguOTcyLTU0LjgyOC04OS4xODQtMjUxLjk3OCAxOS4zMjUtMTA0LjQ0NCA0LjEtMzAzLjQxNCAyNDUuMDM2LTI2Ny40MDMgMjQ1Ljc0NyAzNi43NDYgMTcyLjIwNiAyNDYuODEgNjkuMjcyIDUwMC41NzQtNTIuODIyIDEzMC4yMzEgMjYuMDAzIDE4OC43MDYgNzAuODg1IDIxMC40MTF6IiBmaWxsPSIjRkZGIi8+PC9zdmc+" /> <br /> <img src="https://park.39mi.com/img/domainking.svg" height="auto" width="150" /> <br /> </a>
+        <a style="font-size:10px;color:#dedede;">owner</a>
+      </center>
     </footer>
     <script src="asset/js/alpine.js"></script>
     <script>
