@@ -315,35 +315,32 @@
  <div class="content" id="markdown-content">
         <!-- Markdown content goes here -->
         <textarea id="markdown" style="display: none;">
-# Welcome to SDWZ Shortlink (Free)
-
 ### API
-
-#### 短链生成
+***
+- 短链生成:
 
 ```bash
-# POST /create
+- POST /create
 
 curl -X POST -H "Content-Type: application/json" -d '{"url":"https://131213.xyz"}' https://d.131213.xyz/create
 
-# 指定slug
+- 指定slug
 
 curl -X POST -H "Content-Type: application/json" -d '{"url":"https://131213.xyz","slug":"scxs"}' https://d.131213.xyz/create
 
 ```
 
-
-
-> response:
-
+- response:
+		
 ```json
+
 {
   "slug": "<slug>",
   "link": "http://d.131213.xyz/<slug>"
 }
 ```
 
-        </textarea>
+</textarea>
     </div>
 
     <!-- Load showdown.js from CDN -->
