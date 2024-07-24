@@ -228,6 +228,41 @@
       nav ul li a:hover {
         text-decoration: underline;
       }
+
+      
+#notification-bar {
+    width: 100%;
+    background-color: yellow;
+    color: #000;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    font-size: 14px;  /* 字体大小调整为14px */
+    display: flex;
+    justify-content: center;  /* 居中对齐 */
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+#notification-bar.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+#notification-bar .close-btn {
+    position: absolute;
+    right: 40px;
+	color: red;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 20px;
+}
       
     </style>
   </head>
@@ -242,6 +277,11 @@
     </nav>
     
     <header><h1>SDWZ Shortlink<sup> (Free)</sup></h1></header>
+
+<div id="notification-bar">
+    <span>这是一个全宽度的信息提示条</span>
+    <span class="close-btn" onclick="closeNotificationBar()">&times;</span>
+</div>
     
     <main x-data="app" x-cloak>
       <p x-show.transition.opacity="alert" :class="alert?.type" x-text="alert?.message"></p>
@@ -261,6 +301,27 @@
         <a style="font-size:10px;color:#dedede;">owner</a>
       </center>
     </footer>
+
+    <script>
+    function showNotificationBar() {
+        var bar = document.getElementById("notification-bar");
+        bar.className = "show";
+        setTimeout(function() {
+            closeNotificationBar();
+        }, 15000);
+    }
+
+    function closeNotificationBar() {
+        var bar = document.getElementById("notification-bar");
+        bar.className = bar.className.replace("show", "");
+    }
+
+    // 调用showNotificationBar函数来显示提示条
+    window.onload = function() {
+        showNotificationBar();
+    }
+</script>
+    
     
     <script src="asset/js/alpine.js"></script>
     <script>
