@@ -199,138 +199,37 @@
         }
       }
 
-      /* 替换原有的nav相关样式 */
-nav {
-    width: 100%;
-    height: 18px;
-    background-color: #000000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-}
-
-nav ul {
-    width: 90%;
-    max-width: 1200px;
-    list-style: none;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
-
-nav ul li {
-    margin: 0;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-}
-
-nav ul li:first-child {
-    margin-right: auto;
-}
-
-nav ul li:not(:first-child) {
-    margin-left: 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: normal;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
-.hamburger {
-    display: none;
-    cursor: pointer;
-    margin-left: auto;
-    padding: 0;
-    background: none;
-    border: none;
-    width: 20px;
-    height: 14px;
-    position: relative;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.hamburger span {
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: white;
-    transition: all 0.3s ease;
-}
-
-/* 移动端适配 */
-@media screen and (max-width: 768px) {
-    nav {
-        height: 20px;
-        padding: 0 15px;
-    }
-
-    nav ul {
+      nav {
         width: 100%;
-        flex-direction: column;
-        align-items: flex-start;
-        position: absolute;
-        top: 20px;
+        background-color: var(--color-primary);
+        padding: 1rem 0;
+        position: fixed;
+        top: 0;
         left: 0;
-        background-color: #000000;
-        display: none;
-        padding: 10px 0;
-    }
+        z-index: 1000;
+      }
 
-    nav ul.active {
+      nav ul {
+        list-style: none;
         display: flex;
-    }
-
-    nav ul li {
-        width: 100%;
-        padding: 8px 15px;
+        justify-content: center;
         margin: 0;
-    }
+        padding: 0;
+      }
 
-    nav ul li:first-child {
-        margin-right: 0;
-        display: flex;
-        align-items: center;
-    }
+      nav ul li {
+        margin: 0 1rem;
+      }
 
-    nav ul li:not(:first-child) {
-        margin-left: 0;
-    }
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
 
-    .hamburger {
-        display: flex;
-    }
-
-    nav.menu-open .hamburger span:nth-child(1) {
-        transform: translateY(6px) rotate(45deg);
-    }
-
-    nav.menu-open .hamburger span:nth-child(2) {
-        opacity: 0;
-    }
-
-    nav.menu-open .hamburger span:nth-child(3) {
-        transform: translateY(-6px) rotate(-45deg);
-    }
-}
+      nav ul li a:hover {
+        text-decoration: underline;
+      }
 
       #notification-bar {
         width: 100%;
@@ -370,15 +269,15 @@ nav ul li a:hover {
   <body>
 	  <br>
     <nav>
-       <ul>
+      <ul>
         <li><b style="color:#fff;">URL缩短<sup> (Free)</sup></b></li>
         <li><a href="https://cesu.wang">🚀网络测速</a></li>
         <li><a href="https://ip.icu">🗺️IP查询</a></li>
-        <li><a href="https://shishui.de">🌏WHOIS查询</a></li>
-        <li><a href="https://imges.object.us.kg">🖼️FREE图床</a></li>
+	<li><a href="https://shishui.de">🌏WHOIS查询</a></li>
+	<li><a href="https://imges.object.us.kg">🖼️FREE图床</a></li>
         <li><a href="https://jpg.cat">🛤️IMAGES压缩</a></li>
-        <li><a href="https://doma.ink">🌐DomainKing</a></li>
-    </ul>
+	<li><a href="https://doma.ink">🌐DomainKing</a></li>
+      </ul>
     </nav>
     
     <header><h1>SDWZ Shortlink<sup> (Free)</sup></h1></header>
@@ -482,35 +381,5 @@ nav ul li a:hover {
         }
       }
     </script>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const hamburger = document.querySelector('.hamburger');
-        const nav = document.querySelector('nav');
-        const navList = document.querySelector('nav ul');
-
-        hamburger.addEventListener('click', function() {
-            nav.classList.toggle('menu-open');
-            navList.classList.toggle('active');
-        });
-
-        // 点击导航链接时关闭菜单
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                nav.classList.remove('menu-open');
-                navList.classList.remove('active');
-            });
-        });
-
-        // 点击页面其他地方关闭菜单
-        document.addEventListener('click', function(event) {
-            if (!nav.contains(event.target)) {
-                nav.classList.remove('menu-open');
-                navList.classList.remove('active');
-            }
-        });
-    });
-</script>
-	  
   </body>
 </html>
