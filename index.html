@@ -199,7 +199,8 @@
         }
       }
 
-      nav {
+      /* 替换原有的nav相关样式 */
+nav {
     width: 100%;
     height: 18px;
     background-color: #000000;
@@ -253,25 +254,81 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
+.hamburger {
+    display: none;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 0;
+    background: none;
+    border: none;
+    width: 20px;
+    height: 14px;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
 /* 移动端适配 */
 @media screen and (max-width: 768px) {
     nav {
-        height: auto;
-        padding: 5px 0;
+        height: 20px;
+        padding: 0 15px;
     }
 
     nav ul {
-        flex-wrap: wrap;
-        padding: 0 10px;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        position: absolute;
+        top: 20px;
+        left: 0;
+        background-color: #000000;
+        display: none;
+        padding: 10px 0;
+    }
+
+    nav ul.active {
+        display: flex;
     }
 
     nav ul li {
-        font-size: 12px;
-        margin: 2px 0;
+        width: 100%;
+        padding: 8px 15px;
+        margin: 0;
+    }
+
+    nav ul li:first-child {
+        margin-right: 0;
+        display: flex;
+        align-items: center;
     }
 
     nav ul li:not(:first-child) {
-        margin-left: 10px;
+        margin-left: 0;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    nav.menu-open .hamburger span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+    }
+
+    nav.menu-open .hamburger span:nth-child(2) {
+        opacity: 0;
+    }
+
+    nav.menu-open .hamburger span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
     }
 }
 
@@ -313,15 +370,15 @@ nav ul li a:hover {
   <body>
 	  <br>
     <nav>
-      <ul>
+       <ul>
         <li><b style="color:#fff;">URL缩短<sup> (Free)</sup></b></li>
         <li><a href="https://cesu.wang">🚀网络测速</a></li>
         <li><a href="https://ip.icu">🗺️IP查询</a></li>
-	<li><a href="https://shishui.de">🌏WHOIS查询</a></li>
-	<li><a href="https://imges.object.us.kg">🖼️FREE图床</a></li>
+        <li><a href="https://shishui.de">🌏WHOIS查询</a></li>
+        <li><a href="https://imges.object.us.kg">🖼️FREE图床</a></li>
         <li><a href="https://jpg.cat">🛤️IMAGES压缩</a></li>
-	<li><a href="https://doma.ink">🌐DomainKing</a></li>
-      </ul>
+        <li><a href="https://doma.ink">🌐DomainKing</a></li>
+    </ul>
     </nav>
     
     <header><h1>SDWZ Shortlink<sup> (Free)</sup></h1></header>
@@ -425,5 +482,35 @@ nav ul li a:hover {
         }
       }
     </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('nav');
+        const navList = document.querySelector('nav ul');
+
+        hamburger.addEventListener('click', function() {
+            nav.classList.toggle('menu-open');
+            navList.classList.toggle('active');
+        });
+
+        // 点击导航链接时关闭菜单
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('menu-open');
+                navList.classList.remove('active');
+            });
+        });
+
+        // 点击页面其他地方关闭菜单
+        document.addEventListener('click', function(event) {
+            if (!nav.contains(event.target)) {
+                nav.classList.remove('menu-open');
+                navList.classList.remove('active');
+            }
+        });
+    });
+</script>
+	  
   </body>
 </html>
