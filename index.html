@@ -208,19 +208,19 @@
     
     <header><h1>SDWZ Shortlink<sup> (Free)</sup></h1></header>
 
-	<a style=“color:#f50a0a;”>   请遵守所在国家法律法规，本站不作任何担保和保证。</a>
+	<a style=“color:#f50a0a;”>   Please abide by the laws and regulations of the country where you are located. This site does not make any guarantees or guarantees.</a>
     
     <main x-data="app" x-cloak>
       <p x-show.transition.opacity="alert" :class="alert?.type" x-text="alert?.message"></p>
-      <input placeholder="输入要缩短的网址..." x-model="url" x-ref="url" />
+      <input placeholder="Enter the URL you want to shorten..." x-model="url" x-ref="url" />
       <details>
-        <summary>自定义设置</summary>
+        <summary>Custom settings</summary>
         <div>
           <input placeholder="slug" x-model="slug" />
-          <small>不设置则随机生成 slug</small>
+          <small>If not set, a slug will be randomly generated.</small>
         </div>
       </details>
-      <button :class="{ loading }" :disabled="loading || isValidated()" @click="submit($refs, $nextTick)">生成</button>
+      <button :class="{ loading }" :disabled="loading || isValidated()" @click="submit($refs, $nextTick)">Generate</button>
     </main>
     <footer>
       <center>
@@ -319,7 +319,7 @@
 //documents.push(document.getElementById('test3'));
 //translate.setDocuments(documents); //指定要翻译的元素的集合,可传入一个或多个元素。如果不设置，默认翻译整个网页
 //translate.setAutoDiscriminateLocalLanguage();	//设置用户第一次用时，自动识别其所在国家的语种进行切换
-translate.language.setLocal('chinese_simplified'); //设置本地语种（当前网页的语种）。如果不设置，默认就是 'chinese_simplified' 简体中文。 可填写如 'english'、'chinese_simplified' 等，具体参见文档下方关于此的说明
+translate.language.setLocal('english'); //设置本地语种（当前网页的语种）。如果不设置，默认就是 'chinese_simplified' 简体中文。 可填写如 'english'、'chinese_simplified' 等，具体参见文档下方关于此的说明
 translate.selectLanguageTag.languages = 'english,chinese_simplified,chinese_traditional,korean,japanese';
 translate.service.use('client.edge');
 translate.language.setUrlParamControl(); //url参数后可以加get方式传递 language 参数的方式控制当前网页以什么语种显示
